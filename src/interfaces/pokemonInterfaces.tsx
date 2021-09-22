@@ -10,7 +10,7 @@ export interface Result {
     url: string;
 }
 
-export interface SimplePokemon extends Result {
+export interface SimplePokemon {
     id: string;
     name: string;
     picture: string;
