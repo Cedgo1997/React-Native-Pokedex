@@ -13,6 +13,7 @@ export const TabNavigator = () => {
                 backgroundColor: 'white'
             }}
             screenOptions={{
+                headerShown: false,
                 tabBarActiveTintColor: '#5856D6',
                 tabBarShowLabel: false,
                 tabBarStyle: {
@@ -24,7 +25,7 @@ export const TabNavigator = () => {
                 }
             }}>
             <Tab.Screen
-                name="Home"
+                name="HomeScreen"
                 component={StackNavigator}
                 options={{
                     tabBarIcon: ({ color }) => <Icon name='list' size={30} color={color} />
