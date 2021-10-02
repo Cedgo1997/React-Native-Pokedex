@@ -1,10 +1,13 @@
 import React from 'react';
-import { ActivityIndicator, FlatList, Platform, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Dimensions, FlatList, Platform, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Loading } from '../components/Loading';
 import { PokemonCard } from '../components/PokemonCard';
 import { SearchInput } from '../components/SearchInput';
 import { usePokemonSearch } from '../hooks/usePokemonSearch';
 import { styles as globalStyles } from '../theme/appTheme';
+
+const { width } = Dimensions.get('screen');
 
 export const SearchScreen = () => {
 
@@ -12,13 +15,7 @@ export const SearchScreen = () => {
     const { isFetching, simplePokemonList } = usePokemonSearch();
 
     if (isFetching) {
-        return (
-            <View
-                style={styles.activityContainer}
-            >
-                <ActivityIndicator size={50} color='grey' />
-            </View >
-        )
+        return <Loading />
     }
 
     return (
@@ -28,7 +25,12 @@ export const SearchScreen = () => {
             marginHorizontal: 20
         }
         }>
-            <SearchInput />
+            <SearchInput style={{
+                position: 'absolute',
+                zIndex: 999,
+                width: width - 40,
+                top: top + 10
+            }} />
 
             <FlatList
                 data={simplePokemonList}
@@ -41,26 +43,14 @@ export const SearchScreen = () => {
                     <Text style={{
                         ...globalStyles.title,
                         ...globalStyles.globalMargin,
-                        top: top + 20,
-                        marginBottom: top + 20,
-                        paddingBottom: 5
+                        paddingBottom: 5,
+                        marginTop: top + 70
                     }}>
                         Pokédex
                     </Text>
                 )}
             />
-
-
-
         </View >
     );
 };
 
-const styles = StyleSheet.create({
-    activityContainer: {
-        flex: 1,
-        backgroundColor: 'red',
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-});
