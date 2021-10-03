@@ -23,7 +23,7 @@ export const HomeScreen = () => {
             >
                 <FlatList
                     data={simplePokemonList}
-                    keyExtractor={(pokemon) => pokemon.id}
+                    keyExtractor={(pokemon, index) => pokemon.id + index}
                     renderItem={({ item }) => (
                         <PokemonCard pokemon={item} />
                     )}
