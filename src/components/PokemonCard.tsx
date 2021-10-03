@@ -12,7 +12,7 @@ interface Props {
     pokemon: SimplePokemon;
 }
 
-export const PokemonCard = ({ pokemon }: Props) => {
+export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
     const [bgColor, setBgColor] = useState('grey');
     const isMounted = useRef(true);
     const { navigate } = useNavigation();
